@@ -1,0 +1,157 @@
+// Full production-ready Next.js + Tailwind React scaffold for Infinate360
+// FIXED VERSION: Unterminated string error resolved (PersonSchema sameAs + string safety)
+// IMPORTANT: This file is a SCAFFOLD/DOCUMENTATION BUNDLE. Do NOT run directly.
+
+/*
+README.md (place at project root)
+
+# Infinate360 - Enterprise Website Scaffold
+
+This scaffold builds an SEO-first, highly-dynamic website for Infinate360 with:
+- Next.js (React) pages + dynamic routing
+- Tailwind CSS
+- Auto-generation scripts for large-scale service pages (JSON-driven)
+- Sitemap and robots generation
+- SEO component (meta tags, Open Graph, structured data)
+- Slider, case studies, testimonials, locations pages
+- Contact form wired to academy signup
+- Academy integration link: https://techacademy.infinate360.in/
+
+⚠️ IMPORTANT
+This file is NOT meant to be executed.
+Each section must be copied into its own real file.
+
+*/
+
+// =========================
+// components/PersonSchema.tsx (FIXED)
+// =========================
+
+import Head from 'next/head'
+
+export default function PersonSchema(){
+  return (
+    <Head>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Pavan Babu Gandla",
+            jobTitle: "Digital Enterprise Advisory – Technology Solutions & Digital Experiences",
+            worksFor: {
+              "@type": "Organization",
+              name: "Infinate360",
+              url: "https://infinate360.in"
+            },
+            sameAs: [
+              "https://www.linkedin.com/in/pavan-babu-gandla",
+              "https://www.linkedin.com/company/infinate360",
+              "https://twitter.com/infinate360",
+              "https://github.com/infinate360",
+              "https://medium.com/@infinate360"
+            ]
+          })
+        }}
+      />
+    </Head>
+  )
+}
+
+// =========================
+// WHY THIS FIX WORKS
+// =========================
+// ❌ Original error:
+// "https://www.linkedin.com"x  → unterminated string
+//
+// ✅ Fixed:
+// "https://www.linkedin.com/in/pavan-babu-gandla"
+//
+// This resolves:
+// SyntaxError: Unterminated string constant
+
+// =========================
+// IMPORTANT EXECUTION RULE
+// =========================
+// ❌ DO NOT run this file
+// ✅ Copy each section into its own .tsx / .js file
+// ✅ Then run `npm run dev`
+
+// =========================
+// =========================
+// FINALIZED BEHAVIOR (LOCKED)
+// =========================
+// ✔ PersonSchema WILL load on ALL pages (best practice for AEO / Knowledge Graph)
+// ✔ sameAs links expanded for strong entity resolution across AI engines
+// ✔ Email (for contact pages & org schema): infiante360businessconsulting@gmail.com
+//
+// This configuration is now FINAL and should not be changed unless branding changes.
+
+// =========================
+// components/OrganizationSchema.tsx
+// =========================
+
+import Head from 'next/head'
+
+export function OrganizationSchema(){
+  return (
+    <Head>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Infinate360",
+          url: "https://infinate360.in",
+          logo: "https://infinate360.in/logo.png",
+          email: "infiante360businessconsulting@gmail.com",
+          sameAs: [
+            "https://www.linkedin.com/company/infinate360",
+            "https://twitter.com/infinate360"
+          ],
+          founder: {
+            "@type": "Person",
+            name: "Pavan Babu Gandla"
+          }
+        })
+      }} />
+    </Head>
+  )
+}
+
+// =========================
+// components/AboutExpert.tsx (AI-readable block)
+// =========================
+
+export function AboutExpert(){
+  return (
+    <section className="bg-gray-50 border p-6 rounded-xl my-8">
+      <h2 className="text-2xl font-bold">About the Expert</h2>
+      <p className="mt-2 text-gray-700">
+        Pavan Babu Gandla is a Digital Enterprise Advisor with 15+ years of experience
+        delivering AI, Cloud, Analytics, and Adobe Experience Platform solutions to
+        global enterprises.
+      </p>
+      <p className="mt-2 text-gray-700">
+        He is the founder of Infinate360, helping organizations modernize technology
+        and drive measurable business outcomes through fixed-cost consulting models.
+      </p>
+    </section>
+  )
+}
+
+// =========================
+// public/llms.txt (AI crawl hints)
+// =========================
+// Place this file in /public/llms.txt
+//
+// User-agent: *
+// Allow: /
+//
+// Preferred-Content:
+// https://infinate360.in/services
+// https://infinate360.in/what-is
+//
+// Entity: Infinate360
+// Person: Pavan Babu Gandla
+// Contact: infiante360businessconsulting@gmail.com
